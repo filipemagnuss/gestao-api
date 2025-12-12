@@ -1,0 +1,6 @@
+@BetManager.Api_HostAddress = http://localhost:5241
+
+GET {{BetManager.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
