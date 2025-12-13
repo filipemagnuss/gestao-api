@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XBA4EWEOXBo=",
+  "dgSpecHash": "QRPZhaBb73I=",
   "success": true,
   "projectFilePath": "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\BetManager.Api.csproj",
   "expectedPackageFiles": [
@@ -29,11 +29,7 @@
     "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.5.1\\system.identitymodel.tokens.jwt.7.5.1.nupkg.sha512",
     "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\system.reactive\\6.0.0\\system.reactive.6.0.0.nupkg.sha512",
     "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\system.threading.channels\\8.0.0\\system.threading.channels.8.0.0.nupkg.sha512",
-    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\websocket.client\\5.1.1\\websocket.client.5.1.1.nupkg.sha512",
-    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.20\\microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
-    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.20\\microsoft.windowsdesktop.app.ref.8.0.20.nupkg.sha512",
-    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.20\\microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512",
-    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.20\\microsoft.netcore.app.host.win-x64.8.0.20.nupkg.sha512"
+    "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\websocket.client\\5.1.1\\websocket.client.5.1.1.nupkg.sha512"
   ],
   "logs": []
 }
