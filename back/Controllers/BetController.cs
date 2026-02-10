@@ -26,11 +26,15 @@ namespace BetManager.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Bet bet)
         {
-            // Forçamos a data de criação para agora
-            bet.CreatedAt = DateTime.UtcNow; 
-            
-            var response = await _supabase.From<Bet>().Insert(bet);
-            return Ok(response.Models.FirstOrDefault());
+            try
+            {
+                var response = await _supabase.From<Bet>().Insert(bet);
+                return Ok(response.Models.FirstOrDefault());
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
     }
 }
