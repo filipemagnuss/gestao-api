@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
-/* Define o fundo base da aplicação */
 body {
-  /* Gradiente radial profundo para o vidro brilhar */
   background: radial-gradient(circle at top left, #1e1b4b, #0f172a, #000000);
   color: #f3f4f6;
   min-height: 100vh;
-  /* Garante que o fundo cobre tudo */
-  background-attachment: fixed; 
+  background-attachment: fixed;
 }
 
-/* Scrollbar fina e moderna para combinar com o estilo */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-
-/* Animação suave para o painel lateral */
-@keyframes slide-in {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+::-webkit-scrollbar {
+  width: 6px;
 }
-.animate-slide-in {
-  animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); 
+  }
+  50% { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 45px rgba(16, 185, 129, 0.6); 
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 5s infinite ease-in-out;
 }

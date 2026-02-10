@@ -7,14 +7,15 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact",
         policy => policy
-            .AllowAnyOrigin()
+            .AllowAnyOrigin() // Em produção, mude para a URL do seu site
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
 
-// 2. Configura o Supabase
-var url = "SUA_URL_AQUI"; // <--- COLOQUE SUA URL VERDADEIRA
-var key = "SUA_KEY_AQUI"; // <--- COLOQUE SUA KEY VERDADEIRA
+// 2. Configura o Supabase com seus dados reais
+// Tenta ler do appsettings, se não existir, usa as chaves hardcoded (Fallback para evitar crash)
+var url = builder.Configuration["Supabase:Url"] ?? "https://pytnkwlnvcwwvaadvjqn.supabase.co";
+var key = builder.Configuration["Supabase:Key"] ?? "sb_publishable_fdaD1OvtomjxY-Q3fB_FPg_VeZISBgR";
 
 var options = new Supabase.SupabaseOptions
 {
@@ -29,16 +30,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+// Comentei a verificação de ambiente para garantir que o Swagger abra localmente
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 // 3. Ativa o CORS (Importante: tem de ser antes do MapControllers)
 app.UseCors("AllowReact");
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Comente se tiver problemas com certificado SSL local
 app.UseAuthorization();
 app.MapControllers();
 

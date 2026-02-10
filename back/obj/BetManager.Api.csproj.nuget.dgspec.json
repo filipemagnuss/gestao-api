@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\BetManager.Api.csproj": {}
+    "C:\\Users\\filip\\Downloads\\BetManager\\gestao-api\\back\\BetManager.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\BetManager.Api.csproj": {
+    "C:\\Users\\filip\\Downloads\\BetManager\\gestao-api\\back\\BetManager.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\BetManager.Api.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\Downloads\\BetManager\\gestao-api\\back\\BetManager.Api.csproj",
         "projectName": "BetManager.Api",
-        "projectPath": "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\BetManager.Api.csproj",
-        "packagesPath": "C:\\Users\\Filipe Hahn Magnus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Filipe Hahn Magnus\\Desktop\\BetManager\\back\\obj\\",
+        "projectPath": "C:\\Users\\filip\\Downloads\\BetManager\\gestao-api\\back\\BetManager.Api.csproj",
+        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\filip\\Downloads\\BetManager\\gestao-api\\back\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Filipe Hahn Magnus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
