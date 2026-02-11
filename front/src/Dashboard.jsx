@@ -41,7 +41,6 @@ export default function Dashboard({ session }) {
 
   const handleLogout = async () => { await supabase.auth.signOut(); };
 
-  // Filtros Globais
   const currentMonthBets = bets.filter(bet => {
     const d = new Date(bet.date);
     return d.getMonth() === currentDate.getMonth() && d.getFullYear() === currentDate.getFullYear();
@@ -51,10 +50,8 @@ export default function Dashboard({ session }) {
   const monthReds = currentMonthBets.filter(b => Number(b.amount) < 0).length;
   const monthWinRate = (monthGreens + monthReds) > 0 ? (monthGreens / (monthGreens + monthReds)) * 100 : 0;
   
-  // O Banco considera TODO o histórico + valor inicial
   const currentBank = initialBank + bets.reduce((acc, b) => acc + (Number(b.amount) || 0), 0);
 
-  // --- Ações ---
   const handleDeleteBet = (id) => {
     setConfirmConfig({
       isOpen: true, title: "Apagar Operação?", message: "Esta ação removerá o registro permanentemente.",
@@ -75,13 +72,6 @@ export default function Dashboard({ session }) {
     });
   };
 
-  const handleUpdateBank = () => {
-    const parsed = parseFloat(newBankVal.replace(',', '.'));
-    if (!isNaN(parsed)) setInitialBank(parsed);
-    setIsEditingBank(false);
-    setNewBankVal("");
-  };
-
   const handleSave = async () => {
     if (!val || !selectedDay) return;
     setLoading(true);
@@ -99,13 +89,11 @@ export default function Dashboard({ session }) {
     } catch (e) { console.error(e); } finally { setLoading(false); }
   };
 
-  // --- Renderização ---
   return (
     <div className="relative flex h-screen overflow-hidden bg-[#020617] font-sans text-gray-100">
       
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-      {/* Brilho Esmeralda Pulsante atrás da Sidebar */}
       <div className="absolute top-1/4 -left-20 h-[500px] w-[500px] rounded-full bg-emerald-500/20 blur-[120px] animate-pulse z-0 pointer-events-none" />
 
       {/* Sidebar */}
@@ -114,18 +102,19 @@ export default function Dashboard({ session }) {
           {isSidebarOpen ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
         </button>
 
-        {/* Topo Sidebar */}
-        <div className={`p-8 flex items-center border-b border-white/5 ${isSidebarOpen ? 'gap-4' : 'justify-center'}`}>
+        {/* Topo Sidebar (Logo Ajustado) */}
+        {/* CORREÇÃO AQUI: padding reduzido de p-8 para p-6 ou responsivo para evitar espremer o ícone */}
+        <div className={`flex items-center border-b border-white/5 transition-all ${isSidebarOpen ? 'p-8 gap-4' : 'p-4 justify-center h-24'}`}>
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 hover:rotate-6 transition-transform shadow-lg shadow-emerald-500/20">
-            <Check className="text-[#020617]" size={24} strokeWidth={3} />
+            <Check className="text-[#020617]" size={28} strokeWidth={3} />
           </div>
           {isSidebarOpen && <h1 className="font-bold text-xl text-white animate-in fade-in slide-in-from-left-2">BetManager</h1>}
         </div>
 
         {/* Base Sidebar */}
-        <div className="p-5 space-y-6">
+        <div className="p-4 space-y-4">
           {/* Performance Chart */}
-          <div className={`bg-white/[0.03] border border-white/10 rounded-[32px] p-4 flex items-center ${isSidebarOpen ? 'gap-4' : 'justify-center'}`}>
+          <div className={`bg-white/[0.03] border border-white/10 rounded-[32px] p-3 flex items-center ${isSidebarOpen ? 'gap-4' : 'justify-center'}`}>
             <div className="relative w-12 h-12 shrink-0 rounded-full flex items-center justify-center hover:scale-110 transition-transform" style={{ background: `conic-gradient(#10b981 ${monthWinRate}%, #ef4444 0)` }}>
               <div className="absolute w-9 h-9 bg-[#070b1d] rounded-full flex items-center justify-center text-[9px] font-black">
                 {monthGreens + monthReds > 0 ? `${monthWinRate.toFixed(0)}%` : '-'}
@@ -134,8 +123,8 @@ export default function Dashboard({ session }) {
             {isSidebarOpen && <div className="animate-in fade-in"><p className="text-[10px] text-white/30 font-bold uppercase">Performance</p></div>}
           </div>
 
-          {/* Card da Banca - Editável */}
-          <div onClick={() => isSidebarOpen && setIsEditingBank(true)} className={`p-6 rounded-[32px] bg-gradient-to-br from-white/10 to-transparent border border-white/10 relative overflow-hidden group cursor-pointer hover:border-emerald-500/30 transition-all ${!isSidebarOpen ? 'flex justify-center py-10' : ''}`}>
+          {/* Card da Banca - CORREÇÃO DE TAMANHO */}
+          <div onClick={() => isSidebarOpen && setIsEditingBank(true)} className={`rounded-[32px] bg-gradient-to-br from-white/10 to-transparent border border-white/10 relative overflow-hidden group cursor-pointer hover:border-emerald-500/30 transition-all ${isSidebarOpen ? 'p-6' : 'p-4 flex justify-center items-center h-24'}`}>
              {isSidebarOpen ? (
                <div className="relative z-10">
                  <p className="text-[10px] text-white/40 font-black uppercase mb-1">Banca (clique p/ editar)</p>
@@ -154,20 +143,20 @@ export default function Dashboard({ session }) {
                  )}
                </div>
              ) : (
-                <Wallet size={32} className="text-emerald-400 animate-pulse transition-transform group-hover:scale-125" />
+                // ÍCONE AUMENTADO E CENTRALIZADO
+                <Wallet size={36} className="text-emerald-400 animate-pulse transition-transform group-hover:scale-125" />
              )}
-             {/* Decorativo de fundo */}
              {isSidebarOpen && <div className="absolute -bottom-6 -right-6 text-white/5 transform rotate-12 group-hover:rotate-0 transition-transform"><Wallet size={80} /></div>}
           </div>
           
           {/* Botões de Ação */}
           <div className="grid gap-2">
-            <button onClick={handleClearMonth} className={`group w-full flex items-center p-4 rounded-2xl border border-red-500/20 bg-red-500/5 text-red-400/60 transition-all ${isSidebarOpen ? 'gap-3' : 'justify-center'}`}>
-              <Trash2 size={20} className="shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all" />
+            <button onClick={handleClearMonth} className={`group w-full flex items-center rounded-2xl border border-red-500/20 bg-red-500/5 text-red-400/60 transition-all ${isSidebarOpen ? 'p-4 gap-3' : 'p-3 justify-center h-14'}`}>
+              <Trash2 size={22} className="shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all" />
               {isSidebarOpen && <span className="text-xs font-black uppercase tracking-widest">Limpar Mês</span>}
             </button>
-            <button onClick={handleLogout} className={`group w-full flex items-center p-4 rounded-2xl border border-white/10 bg-white/5 text-white/40 transition-all ${isSidebarOpen ? 'gap-3' : 'justify-center'}`}>
-              <LogOut size={20} className="shrink-0 group-hover:translate-x-1 transition-all" />
+            <button onClick={handleLogout} className={`group w-full flex items-center rounded-2xl border border-white/10 bg-white/5 text-white/40 transition-all ${isSidebarOpen ? 'p-4 gap-3' : 'p-3 justify-center h-14'}`}>
+              <LogOut size={22} className="shrink-0 group-hover:translate-x-1 transition-all" />
               {isSidebarOpen && <span className="text-xs font-black uppercase tracking-widest">Sair</span>}
             </button>
           </div>
@@ -179,7 +168,6 @@ export default function Dashboard({ session }) {
         <header className="h-32 flex flex-col justify-center px-10">
           <div className="flex overflow-x-auto gap-4 scrollbar-hide py-4 items-center">
             {months.map((m, i) => {
-              // Cálculo do valor para este mês específico
               const monthBetsTotal = bets
                 .filter(b => new Date(b.date).getMonth() === i && new Date(b.date).getFullYear() === currentDate.getFullYear())
                 .reduce((acc, b) => acc + (Number(b.amount) || 0), 0);
@@ -190,8 +178,6 @@ export default function Dashboard({ session }) {
               return (
                 <button key={m} onClick={() => { setCurrentDate(new Date(currentDate.getFullYear(), i, 1)); setSelectedDay(null); }} className={`flex-none w-28 h-16 rounded-[24px] border flex flex-col items-center justify-center transition-all duration-300 ${isSelected ? "bg-emerald-500 border-white/20 text-[#020617] scale-105 shadow-lg shadow-emerald-500/20" : "bg-white/5 border-white/5 text-white/30 hover:bg-white/10"}`}>
                   <span className="font-bold text-sm leading-none">{m}</span>
-                  
-                  {/* Valor do Mês Recuperado */}
                   <div className="h-4 flex items-center mt-1">
                     {(hasValue || isSelected) && (
                       <span className={`text-[10px] font-black ${isSelected ? 'text-[#020617]/70' : (monthBetsTotal >= 0 ? 'text-emerald-400' : 'text-red-400')}`}>
@@ -211,7 +197,6 @@ export default function Dashboard({ session }) {
             <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
           </div>
 
-          {/* Grid Cards Aumentados (minmax 130px) e com mais padding */}
           <div className="grid grid-cols-7 gap-4 auto-rows-[minmax(130px,1fr)]">
             {[...Array(new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay())].map((_, i) => <div key={i} />)}
             {[...Array(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate())].map((_, i) => {
@@ -238,7 +223,6 @@ export default function Dashboard({ session }) {
           </div>
         </div>
 
-        {/* Modal de Detalhes do Dia */}
         {selectedDay && (
            <>
              <div className="fixed inset-0 bg-[#020617]/90 backdrop-blur-md z-40" onClick={() => setSelectedDay(null)}></div>
