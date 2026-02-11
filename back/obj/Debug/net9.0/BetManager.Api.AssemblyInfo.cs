@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BetManager.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dac70c0b19b827df720c386a20d4f05324c892a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9350f058e5a66bbe09c83a63eb10359877e9e3a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BetManager.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BetManager.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
