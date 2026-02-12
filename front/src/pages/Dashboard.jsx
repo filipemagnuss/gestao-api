@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { supabase } from './supabase';
-import ConfirmModal from './components/ConfirmModal';
+import { supabase } from '../supabase';
+import ConfirmModal from '../components/ConfirmModal';
 import { 
   Check, ChevronLeft, ChevronRight, LogOut, 
   TrendingUp, TrendingDown, X, Wallet, Activity, Trash2 
@@ -174,6 +174,9 @@ export default function Dashboard({ session }) {
               
               const isSelected = currentDate.getMonth() === i;
               const hasValue = monthBetsTotal !== 0;
+              <button>
+                <a href="https://www.w3schools.com">Visit W3Schools</a>
+              </button>
 
               return (
                 <button key={m} onClick={() => { setCurrentDate(new Date(currentDate.getFullYear(), i, 1)); setSelectedDay(null); }} className={`flex-none w-28 h-16 rounded-[24px] border flex flex-col items-center justify-center transition-all duration-300 ${isSelected ? "bg-emerald-500 border-white/20 text-[#020617] scale-105 shadow-lg shadow-emerald-500/20" : "bg-white/5 border-white/5 text-white/30 hover:bg-white/10"}`}>
@@ -186,6 +189,7 @@ export default function Dashboard({ session }) {
                     )}
                   </div>
                 </button>
+                
               );
             })}
           </div>
